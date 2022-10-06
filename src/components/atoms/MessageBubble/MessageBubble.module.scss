@@ -1,0 +1,55 @@
+// VARIABLES
+@import "../../../styles/variables";
+
+// STYLES
+.message {
+  flex-shrink: 0;
+  overflow: hidden;
+  max-width: 65%;
+  margin-top: 2rem;
+  padding: 0.9rem 1.6rem;
+  border-radius: 1.8rem;
+  font-weight: 300;
+  line-height: 1.829rem;
+  color: $white;
+  word-break: break-word;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  // BOT
+  &.bot {
+    position: relative;
+    align-self: flex-start;
+    background: $purple;
+
+    > span {
+      position: relative;
+      z-index: 20;
+    }
+    & + .bot {
+      margin-top: 0.5rem;
+    }
+  }
+
+  // HUMAN
+  &.human {
+    align-self: flex-end;
+    background: $purple-alt;
+
+    & + .human {
+      margin-top: 0.5rem;
+    }
+  }
+
+  // GALLERY
+  &.gallery {
+    overflow: unset;
+    width: 100%;
+    max-width: unset;
+    padding: 0;
+    border-radius: 0;
+    background: none;
+  }
+}

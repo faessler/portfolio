@@ -1,0 +1,21 @@
+// VARIABLES
+@import "../../../styles/variables";
+
+// STYLES
+.button {
+  appearance: none;
+  margin-top: 0.5rem;
+  padding: 0.5rem 2rem;
+  border: 0;
+  border-radius: 0.5rem;
+  color: $white;
+  background: $pink;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+  @include hover {
+    background: darken($pink, 8%);
+  }
+}

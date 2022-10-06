@@ -1,0 +1,75 @@
+// VARIABLES
+@import "../../../../styles/variables";
+
+// STYLES
+.answerInput {
+  display: flex;
+  overflow: hidden;
+  max-width: 70%;
+  margin: 0.3rem 0.5rem;
+  padding: 0;
+  border-radius: 1.8rem;
+  font-weight: 300;
+  line-height: 1.829rem;
+  background: $purple-alt;
+  cursor: pointer;
+  color: $white;
+  transition: background 0.2s ease;
+
+  @include hover {
+    background: darken($purple-alt, 15%);
+  }
+  input {
+    appearance: none;
+    width: 15rem;
+    padding: 0.9rem 0.5rem 0.9rem 1.6rem;
+    border: none;
+    background: none;
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: $white;
+
+    &:focus {
+      outline: none;
+    }
+    &::placeholder {
+      color: $gray;
+      font-style: italic;
+    }
+  }
+  button {
+    appearance: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin: 0;
+    padding: 0.9rem 1.4rem 0.9rem 0.5rem;
+    border: none;
+    background: none;
+    color: $gray-light;
+    cursor: pointer;
+
+    @include hover {
+      color: $white;
+    }
+    &:focus {
+      outline: none;
+    }
+    svg {
+      width: 1.5em;
+      height: 1.5em;
+    }
+  }
+
+  // iOS Fix: Prevent iOS devices from zooming in on input
+  &.IOS {
+    input {
+      font-size: 1.6rem;
+
+      &::placeholder {
+        font-size: 1.4rem;
+      }
+    }
+  }
+}

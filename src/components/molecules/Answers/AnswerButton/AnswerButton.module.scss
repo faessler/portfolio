@@ -1,0 +1,20 @@
+// VARIABLES
+@import "../../../../styles/variables";
+
+// STYLES
+.answerButton {
+  max-width: 70%;
+  margin: 0.3rem 0.5rem;
+  padding: 0.9rem 1.6rem;
+  border-radius: 1.8rem;
+  font-weight: 300;
+  line-height: 1.829rem;
+  background: $purple-alt;
+  cursor: pointer;
+  color: $white;
+  transition: background 0.2s ease;
+
+  @include hover {
+    background: darken($purple-alt, 15%);
+  }
+}

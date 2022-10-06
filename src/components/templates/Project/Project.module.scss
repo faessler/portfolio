@@ -1,0 +1,135 @@
+// VARIABLES
+@import "../../../styles/variables";
+
+// STYLES
+.container {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+
+  @include breakpoint(md) {
+    border-radius: 1rem;
+  }
+}
+
+.main {
+  overflow: hidden;
+  height: 100%;
+  background: $white;
+}
+
+.wrapper {
+  padding: 1.2rem 1rem;
+
+  @include breakpoint(md) {
+    padding: 1.7rem 1.5rem;
+  }
+}
+
+.introImage {
+  position: relative;
+  overflow: hidden;
+  height: 38.2%;
+  max-height: 25rem;
+  min-height: 10rem;
+
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0px -60px 60px -30px rgba(0, 0, 0, 0.7);
+  }
+  h1 {
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 1rem;
+    font-size: 1.8rem;
+    color: $white;
+
+    @include breakpoint(md) {
+      padding: 1.5rem;
+    }
+    small {
+      display: block;
+      font-size: 1.1rem;
+      font-weight: normal;
+    }
+  }
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.resume {
+  padding-bottom: 3rem;
+
+  @include breakpoint(md) {
+    padding-bottom: 3.5rem;
+  }
+}
+.resumeTitle {
+  margin: 0 0 0.5rem;
+  font-size: 1.6rem;
+}
+.resumeDescription {
+  margin: 0;
+  line-height: 1.4em;
+}
+.resumeInfos {
+  margin-top: 1.2rem;
+}
+.resumeDate {
+  margin-right: 1.6rem;
+
+  > span {
+    padding-top: 0.07em;
+  }
+}
+.resumeLink {
+  color: $pink;
+
+  &:hover {
+    color: darken($pink, 10%);
+  }
+}
+
+.preview {
+  padding-bottom: 3.5rem;
+
+  @include breakpoint(md) {
+    padding-bottom: 4rem;
+  }
+}
+.previewTitle {
+  margin: 0 0 0.5rem;
+  font-size: 1.6rem;
+}
+
+.furtherProjects {
+  margin: 0 -1rem -1rem;
+  padding: 1rem;
+  background: $gray-light;
+
+  @include breakpoint(md) {
+    margin: 0 -1.5rem -1.5rem;
+    padding: 1.5rem;
+  }
+
+  > h3 {
+    margin-bottom: 0.4rem;
+  }
+}

@@ -1,0 +1,44 @@
+// VARIABLES
+@import "./variables";
+
+// ROOT
+html {
+  width: 100%;
+  height: 100%;
+  font-size: 10px;
+  background: linear-gradient(lighten($pink, 5%), $pink, darken($pink, 5%));
+}
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Helvetica, Arial, Sans-Serif;
+  font-size: 14px;
+}
+#🌍 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+// GLOBAL
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+p {
+  line-height: 1.3em;
+}
+a {
+  position: relative;
+  color: $black;
+  text-decoration: none;
+}

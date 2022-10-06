@@ -1,0 +1,10 @@
+// VARIABLES
+@import "../../../styles/variables";
+
+// STYLES
+.emoji {
+  display: inline-block;
+  font-size: 4em;
+  transform: scale(0.25) translateY(1.1em);
+  margin: -1em -0.372em;
+}

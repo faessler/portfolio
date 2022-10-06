@@ -1,0 +1,27 @@
+// VARIABLES
+@import "../../../styles/variables";
+
+// STYLES
+.container {
+  margin: 0 -1rem;
+
+  @include breakpoint(md) {
+    margin: 0 -1.5rem;
+  }
+}
+.gallery {
+  display: flex;
+  user-select: none;
+
+  &:after,
+  &:before {
+    content: "";
+    flex-shrink: 0;
+    width: 1rem;
+    min-height: 100%;
+
+    @include breakpoint(md) {
+      width: 1.5rem;
+    }
+  }
+}

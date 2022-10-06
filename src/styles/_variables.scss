@@ -1,0 +1,34 @@
+// COLORS
+$white: #ffffff;
+$black: #000000;
+$gray: #dfdfdf;
+$gray-light: #f2f2f2;
+$purple: #6a32ef;
+$purple-alt: #7380aa;
+$pink: #f0195d;
+
+// BREAKPOINTS
+$breakpoints: (
+  sm: 376px,
+  // iPhone 8
+  md: 415px,
+  // iPhone 8 plus
+  lg: 769px,
+  // iPad
+  xl: 1025px,
+  // iPadPro
+);
+@mixin breakpoint($breakpoint) {
+  @media (min-width: map_get($breakpoints, $breakpoint)) {
+    @content;
+  }
+}
+
+// MIXINS
+@mixin hover {
+  @media (hover: hover), (-ms-high-contrast: none) {
+    &:hover {
+      @content;
+    }
+  }
+}

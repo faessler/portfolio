@@ -1,0 +1,87 @@
+// VARIABLES
+@import "../../../styles/variables";
+
+// STYLES
+.header {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  height: 5.2rem;
+  padding: 1.2rem 1.1rem 1.1rem;
+  border-bottom: 0.1rem solid $gray;
+}
+
+// chat
+.chat {
+  justify-content: space-between;
+
+  > div {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    img {
+      width: 2.8rem;
+      height: 2.8rem;
+      border-radius: 100%;
+    }
+    h1 {
+      margin: 0 0 0 8px;
+      font-size: 1.4rem;
+    }
+  }
+}
+
+// contact
+.contact {
+  flex-direction: column;
+  justify-content: center;
+  background: $white;
+
+  > div {
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    color: $pink;
+    cursor: pointer;
+
+    @include hover {
+      color: darken($pink, 10%);
+    }
+    svg {
+      display: inline-block;
+      width: 0.9em;
+      height: 0.9em;
+      margin-bottom: -0.1rem;
+    }
+  }
+  h2 {
+    position: absolute;
+    margin: 0;
+    text-align: center;
+    font-size: 1.4rem;
+  }
+}
+
+// project
+.project {
+  justify-content: flex-end;
+  background: $white;
+
+  > div {
+    color: $pink;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    @include hover {
+      color: darken($pink, 10%);
+    }
+    > svg {
+      display: block;
+      width: 0.65em;
+      height: 0.65em;
+      margin: 0.1rem 0 0 0.4rem;
+    }
+  }
+}
