@@ -1,4 +1,5 @@
-import firestoreAPI from "src/api/firestoreAPI";
+import { doc, getDoc } from "firebase/firestore/lite";
+import database from "src/api/firestoreAPI";
 
 export type AnswerType = {
   target: string;
@@ -12,13 +13,11 @@ export type ChatType = {
   [key: string]: ChatChunkType;
 };
 
-const chatAPI = () =>
-  firestoreAPI
-    .doc(`Chat/v1`)
-    .get()
-    .then((doc) => {
-      const chatDocument = doc.data();
-      return chatDocument as ChatType;
-    });
+const chatAPI = async () => {
+  const docRef = doc(database, "Chat", "v1");
+  const docSnap = await getDoc(docRef);
+  const chatDocument = docSnap.data();
+  return chatDocument as ChatType;
+};
 
 export default chatAPI;

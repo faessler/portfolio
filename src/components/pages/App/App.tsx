@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { isEmpty } from "src/helpers";
 import { useChatHistory, useSessionStorage } from "src/hooks";
@@ -7,10 +7,12 @@ import contactAPI, { ContactType } from "src/api/contactAPI";
 import projectsAPI, { ProjectType } from "src/api/projectsAPI";
 import sendMailAPI from "src/api/sendMailAPI";
 import Chat from "src/components/templates/Chat/Chat";
-import Contact from "src/components/templates/Contact/Contact";
-import Project from "src/components/templates/Project/Project";
+import Fallback from "src/components/templates/Fallback/Fallback";
 import { FrameType } from "src/components/atoms/Frame/Frame";
 import styles from "./App.module.scss";
+
+const Contact = lazy(() => import("src/components/templates/Contact/Contact"));
+const Project = lazy(() => import("src/components/templates/Project/Project"));
 
 const App = () => {
   const [humanName, setHumanName] = useState("");
@@ -171,14 +173,16 @@ const App = () => {
             exit={{ translateX: "-100%" }}
             transition={{ type: "spring", damping: 18, stiffness: 100 }}
           >
-            <Contact
-              chatHistory={chatHistory}
-              contact={contact}
-              toggleContactVisibility={toggleContactVisibility}
-              frames={projectFrames}
-              projectShowHandlerFunc={showProjectHandler}
-              resetChatHistoryFunc={resetChatHistory}
-            />
+            <Suspense fallback={<Fallback />}>
+              <Contact
+                chatHistory={chatHistory}
+                contact={contact}
+                toggleContactVisibility={toggleContactVisibility}
+                frames={projectFrames}
+                projectShowHandlerFunc={showProjectHandler}
+                resetChatHistoryFunc={resetChatHistory}
+              />
+            </Suspense>
           </motion.div>
         )}
       </AnimatePresence>
@@ -191,12 +195,14 @@ const App = () => {
             exit={{ translateY: "100%" }}
             transition={{ type: "spring", damping: 18, stiffness: 100 }}
           >
-            <Project
-              project={projects[showProject]}
-              galleryFrames={projectFrames}
-              galleryExcludeFrame={showProject}
-              galleryShowHandlerFunc={showProjectHandler}
-            />
+            <Suspense fallback={<Fallback />}>
+              <Project
+                project={projects[showProject]}
+                galleryFrames={projectFrames}
+                galleryExcludeFrame={showProject}
+                galleryShowHandlerFunc={showProjectHandler}
+              />
+            </Suspense>
           </motion.div>
         )}
       </AnimatePresence>

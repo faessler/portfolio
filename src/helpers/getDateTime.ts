@@ -1,12 +1,9 @@
-import firebase from "firebase/app";
+import { Timestamp } from "firebase/firestore/lite";
 
-const getDateTime = (
-  timestamp: firebase.firestore.Timestamp,
-  format: string
-) => {
+const getDateTime = (timestamp: Timestamp, format: string) => {
   let timestampConstructor = timestamp;
   if (typeof Object.getPrototypeOf(timestamp).toDate === "undefined") {
-    timestampConstructor = new firebase.firestore.Timestamp(
+    timestampConstructor = new Timestamp(
       timestamp.seconds,
       timestamp.nanoseconds
     );

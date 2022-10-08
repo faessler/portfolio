@@ -6,7 +6,11 @@ html {
   width: 100%;
   height: 100%;
   font-size: 10px;
-  background: linear-gradient(lighten($pink, 5%), $pink, darken($pink, 5%));
+  background: $white;
+
+  @include breakpoint(md) {
+    background: linear-gradient(lighten($pink, 5%), $pink, darken($pink, 5%));
+  }
 }
 body {
   width: 100%;

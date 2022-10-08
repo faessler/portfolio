@@ -1,5 +1,5 @@
-import firebase from "firebase/app";
-import "firebase/firestore";
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore/lite";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_GCP_FIRESTORE_API_KEY,
@@ -10,7 +10,7 @@ const firebaseConfig = {
   messagingSenderId: process.env.REACT_APP_GCP_FIRESTORE_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_GCP_FIRESTORE_APP_ID,
 };
-firebase.initializeApp(firebaseConfig);
-const firestoreAPI = firebase.firestore();
+const firebaseApp = initializeApp(firebaseConfig);
+const database = getFirestore(firebaseApp);
 
-export default firestoreAPI;
+export default database;

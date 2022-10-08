@@ -1,9 +1,15 @@
-import firebase from "firebase/app";
-import firestoreAPI from "src/api/firestoreAPI";
+import {
+  query,
+  collection,
+  orderBy,
+  getDocs,
+  Timestamp,
+} from "firebase/firestore/lite";
+import database from "src/api/firestoreAPI";
 
 export type ProjectType = {
   client?: string;
-  date?: firebase.firestore.Timestamp;
+  date?: Timestamp;
   hide?: Boolean;
   mockup?: string;
   name?: string;
@@ -13,18 +19,15 @@ export type ProjectType = {
   url?: string;
 };
 
-const projectsAPI = () =>
-  firestoreAPI
-    .collection("Projects")
-    .orderBy("date", "desc")
-    .get()
-    .then((querySnapshot) => {
-      let projectDocuments = [] as ProjectType[];
-      querySnapshot.forEach((doc) => {
-        const projectDocument = doc.data();
-        projectDocuments.push(projectDocument);
-      });
-      return projectDocuments;
-    });
+const projectsAPI = async () => {
+  const q = query(collection(database, "Projects"), orderBy("date", "desc"));
+  const querySnapshot = await getDocs(q);
+  const projectDocuments = [] as ProjectType[];
+  querySnapshot.forEach((doc) => {
+    const projectDocument = doc.data();
+    projectDocuments.push(projectDocument);
+  });
+  return projectDocuments;
+};
 
 export default projectsAPI;
