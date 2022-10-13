@@ -15,7 +15,7 @@
 .chat {
   justify-content: space-between;
 
-  > div {
+  > button {
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -38,7 +38,7 @@
   justify-content: center;
   background: $white;
 
-  > div {
+  > button {
     align-self: flex-start;
     display: flex;
     align-items: center;
@@ -68,7 +68,7 @@
   justify-content: flex-end;
   background: $white;
 
-  > div {
+  > button {
     color: $pink;
     display: flex;
     align-items: center;

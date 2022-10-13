@@ -45,6 +45,7 @@ const App = () => {
   /**
    * PROJECTS
    */
+  const [projectFocusTrap, setProjectFocusTrap] = useState(false);
   const [projects, setProjects] = useSessionStorage<ProjectType[]>(
     "projects",
     []
@@ -155,15 +156,21 @@ const App = () => {
 
   return (
     <div className={styles.app}>
-      <Chat
-        answers={answers}
-        answerHandler={answerHandler}
-        chatHistory={chatHistory}
-        humanName={humanName}
-        projectFrames={projectFrames}
-        projectShowHandlerFunc={showProjectHandler}
-        toggleContactVisibility={toggleContactVisibility}
-      />
+      <div
+        className={styles.layer}
+        {...((isContactVisible || isProjectVisible) && { "aria-hidden": true })}
+      >
+        <Chat
+          answers={answers}
+          answerHandler={answerHandler}
+          chatHistory={chatHistory}
+          humanName={humanName}
+          projectFrames={projectFrames}
+          projectShowHandlerFunc={showProjectHandler}
+          toggleContactVisibility={toggleContactVisibility}
+        />
+      </div>
+
       <AnimatePresence>
         {isContactVisible && (
           <motion.div
@@ -172,6 +179,11 @@ const App = () => {
             animate={{ translateX: "0%" }}
             exit={{ translateX: "-100%" }}
             transition={{ type: "spring", damping: 18, stiffness: 100 }}
+            role="dialog"
+            aria-modal
+            aria-labelledby="dialog1Title"
+            aria-describedby="dialog1Desc"
+            {...(isProjectVisible && { "aria-hidden": true })}
           >
             <Suspense fallback={<Fallback />}>
               <Contact
@@ -186,6 +198,7 @@ const App = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
       <AnimatePresence>
         {isProjectVisible && (
           <motion.div
@@ -194,6 +207,13 @@ const App = () => {
             animate={{ translateY: "0%" }}
             exit={{ translateY: "100%" }}
             transition={{ type: "spring", damping: 18, stiffness: 100 }}
+            role="dialog"
+            aria-modal
+            aria-labelledby="dialog2Title"
+            aria-describedby="dialog2Desc"
+            onAnimationComplete={() => {
+              setProjectFocusTrap(!projectFocusTrap);
+            }}
           >
             <Suspense fallback={<Fallback />}>
               <Project
@@ -201,6 +221,7 @@ const App = () => {
                 galleryFrames={projectFrames}
                 galleryExcludeFrame={showProject}
                 galleryShowHandlerFunc={showProjectHandler}
+                projectFocusTrap={projectFocusTrap}
               />
             </Suspense>
           </motion.div>

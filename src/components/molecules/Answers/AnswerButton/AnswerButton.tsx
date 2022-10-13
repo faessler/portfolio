@@ -8,7 +8,7 @@ type Props = {
 };
 
 const AnswerButton = ({ answer, answerHandler }: Props) => (
-  <motion.div
+  <motion.button
     initial={{ translateY: "100%", opacity: 0 }}
     animate={{ translateY: "0%", opacity: 1 }}
     transition={{ delay: 0.5 }}
@@ -16,7 +16,7 @@ const AnswerButton = ({ answer, answerHandler }: Props) => (
     onClick={() => answerHandler(answer)}
   >
     {answer.text}
-  </motion.div>
+  </motion.button>
 );
 
 export default AnswerButton;

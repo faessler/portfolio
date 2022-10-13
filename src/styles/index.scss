@@ -46,3 +46,14 @@ a {
   color: $black;
   text-decoration: none;
 }
+button {
+  appearance: none;
+  display: block;
+  padding: 0;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  color: currentColor;
+  background-color: transparent;
+  cursor: pointer;
+}

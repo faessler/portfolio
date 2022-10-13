@@ -30,6 +30,7 @@ const AnswerInput = ({ answer, answerHandler }: Props) => {
         placeholder="Type and hit ENTER"
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
+        required
       />
       <button type="submit">
         <Icon name="submit" />

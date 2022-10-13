@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import FocusTrap from "focus-trap-react";
 import { isMobileOrTablet, getDateTime } from "src/helpers";
 import { ProjectType } from "src/api/projectsAPI";
 import Header from "src/components/organisms/Header/Header";
@@ -15,6 +16,7 @@ type Props = {
   galleryFrames: Array<FrameType>;
   galleryShowHandlerFunc: Function;
   project: ProjectType;
+  projectFocusTrap: boolean;
 };
 
 const Project = ({
@@ -22,6 +24,7 @@ const Project = ({
   galleryFrames,
   galleryShowHandlerFunc,
   project,
+  projectFocusTrap,
 }: Props) => {
   const mainScrollRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -37,7 +40,7 @@ const Project = ({
     }
   }, [galleryScrollRef, project]);
 
-  return (
+  const render = () => (
     <div className={styles.container}>
       <Header
         type={"project"}
@@ -49,7 +52,7 @@ const Project = ({
         <HideScrollBar ref={mainScrollRef}>
           <div className={styles.introImage}>
             <Image src={project.previewImage || ""} alt={project.name || ""} />
-            <h1>
+            <h1 id="dialog2Title">
               <small>{project.technology}</small>
               {project.client}
             </h1>
@@ -57,12 +60,18 @@ const Project = ({
           <div className={styles.wrapper}>
             <div className={styles.resume}>
               <h2 className={styles.resumeTitle}>{project.name}</h2>
-              <p className={styles.resumeDescription}>{project.text}</p>
+              <p className={styles.resumeDescription} id="dialog2Desc">
+                {project.text}
+              </p>
               <p className={styles.resumeInfos}>
-                <span className={styles.resumeDate}>
-                  <Emoji name="date" />{" "}
-                  {!!project.date && getDateTime(project.date, "DD.MM.Y")}
-                </span>
+                {!!project.date && (
+                  <span className={styles.resumeDate}>
+                    <Emoji name="date" />{" "}
+                    <time dateTime={getDateTime(project.date, "Y-MM-DD")}>
+                      {getDateTime(project.date, "DD.MM.Y")}
+                    </time>
+                  </span>
+                )}
                 <a
                   href={`https://${project.url}`}
                   target={isMobileOrTablet() ? "_self" : "_blank"}
@@ -96,6 +105,12 @@ const Project = ({
       </main>
     </div>
   );
+
+  if (projectFocusTrap) {
+    return <FocusTrap>{render()}</FocusTrap>;
+  }
+
+  return render();
 };
 
 export default Project;

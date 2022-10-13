@@ -32,6 +32,9 @@
     &:focus {
       outline: none;
     }
+    &:focus-visible {
+      background: darken($purple-alt, 15%);
+    }
     &::placeholder {
       color: $gray;
       font-style: italic;
@@ -50,11 +53,14 @@
     color: $gray-light;
     cursor: pointer;
 
-    @include hover {
-      color: $white;
-    }
     &:focus {
       outline: none;
+    }
+    &:focus-visible {
+      background: darken($purple-alt, 15%);
+    }
+    @include hover {
+      color: $white;
     }
     svg {
       width: 1.5em;

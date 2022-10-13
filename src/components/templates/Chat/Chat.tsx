@@ -5,6 +5,7 @@ import Header from "src/components/organisms/Header/Header";
 import Answers from "src/components/molecules/Answers/Answers";
 import Messages from "src/components/molecules/Messages/Messages";
 import { FrameType } from "src/components/atoms/Frame/Frame";
+import styles from "./Chat.module.scss";
 
 type Props = {
   answers: Array<AnswerType>;
@@ -25,7 +26,7 @@ const Chat = ({
   projectShowHandlerFunc,
   toggleContactVisibility,
 }: Props) => (
-  <>
+  <div className={styles.chat}>
     <Header type="chat" toggleContactVisibility={toggleContactVisibility} />
     <Messages
       answers={answers}
@@ -37,7 +38,7 @@ const Chat = ({
     {!isEmpty(answers) && (
       <Answers answers={answers} answerHandler={answerHandler} />
     )}
-  </>
+  </div>
 );
 
 export default Chat;

@@ -1,4 +1,5 @@
 import ReactMarkdown from "react-markdown";
+import FocusTrap from "focus-trap-react";
 import { ContactType } from "src/api/contactAPI";
 import { ChatHistoryChunkInterface } from "src/interfaces/chatHistory";
 import Header from "src/components/organisms/Header/Header";
@@ -27,8 +28,8 @@ const Contact = ({
   resetChatHistoryFunc,
   toggleContactVisibility,
 }: Props) => (
-  <div className={styles.container}>
-    <main className={styles.main}>
+  <FocusTrap>
+    <div className={styles.container}>
       <Header
         type="contact"
         toggleContactVisibility={toggleContactVisibility}
@@ -45,9 +46,11 @@ const Contact = ({
         <div className={styles.wrapper}>
           <div className={styles.section}>
             <h3 className={styles.name}>{contact.about?.title}</h3>
-            <ReactMarkdown
-              source={contact.about?.text.replace(/\\n/g, "\n") || ""}
-            />
+            <div id="dialog1Desc">
+              <ReactMarkdown
+                source={contact.about?.text.replace(/\\n/g, "\n") || ""}
+              />
+            </div>
           </div>
 
           <div className={`${styles.section} ${styles.workAndProjects}`}>
@@ -81,8 +84,8 @@ const Contact = ({
           </div>
         </div>
       </HideScrollBar>
-    </main>
-  </div>
+    </div>
+  </FocusTrap>
 );
 
 export default Contact;

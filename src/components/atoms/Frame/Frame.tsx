@@ -14,16 +14,19 @@ type Props = {
 };
 
 const Frame = ({ frame, frameIndex, showHandlerFunc }: Props) => (
-  <div
-    className={styles.container}
-    onClick={() => showHandlerFunc(frameIndex, false)}
-  >
+  <article className={styles.container}>
     <img className={styles.image} src={frame.image} alt={frame.altText} />
     <h3 className={styles.heading}>
       {frame.subtitle && <small>{frame.subtitle}</small>}
       {frame.title}
     </h3>
-  </div>
+    <button
+      className={styles.button}
+      onClick={() => showHandlerFunc(frameIndex, false)}
+    >
+      Show more
+    </button>
+  </article>
 );
 
 export default Frame;
