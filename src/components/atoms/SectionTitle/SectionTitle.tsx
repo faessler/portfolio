@@ -5,7 +5,7 @@ type Props = {
 };
 
 const SectionTitle = ({ children }: Props) => (
-  <h3 className={styles.sectionTitle}>{children}</h3>
+  <h2 className={styles.sectionTitle}>{children}</h2>
 );
 
 export default SectionTitle;

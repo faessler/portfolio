@@ -7,7 +7,7 @@ import {
 } from "firebase/firestore/lite";
 import database from "src/api/firestoreAPI";
 
-export type ProjectType = {
+export interface IProject {
   client?: string;
   date?: Timestamp;
   hide?: Boolean;
@@ -17,12 +17,12 @@ export type ProjectType = {
   technology?: string;
   text?: string;
   url?: string;
-};
+}
 
 const projectsAPI = async () => {
   const q = query(collection(database, "Projects"), orderBy("date", "desc"));
   const querySnapshot = await getDocs(q);
-  const projectDocuments = [] as ProjectType[];
+  const projectDocuments = [] as IProject[];
   querySnapshot.forEach((doc) => {
     const projectDocument = doc.data();
     projectDocuments.push(projectDocument);

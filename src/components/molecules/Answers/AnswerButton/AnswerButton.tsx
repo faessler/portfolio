@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
-import { AnswerType } from "src/api/chatAPI";
+import { IAnswer } from "src/api/chatAPI";
 import styles from "./AnswerButton.module.scss";
 
 type Props = {
-  answer: AnswerType;
+  answer: IAnswer;
   answerHandler: Function;
 };
 

@@ -18,6 +18,35 @@
   }
 }
 
+.header {
+  flex-direction: column;
+  justify-content: center;
+
+  > button {
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    color: $pink;
+    cursor: pointer;
+
+    @include hover {
+      color: darken($pink, 10%);
+    }
+    svg {
+      display: inline-block;
+      width: 0.9em;
+      height: 0.9em;
+      margin-bottom: -0.1rem;
+    }
+  }
+  h1 {
+    position: absolute;
+    margin: 0;
+    text-align: center;
+    font-size: 1.4rem;
+  }
+}
+
 .profilePicture {
   width: 100%;
   height: 0;
@@ -45,7 +74,7 @@
   }
 }
 .workAndProjects {
-  > h3 {
+  > h2 {
     margin-bottom: 0.3rem;
   }
 }

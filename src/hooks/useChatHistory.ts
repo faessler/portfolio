@@ -1,26 +1,31 @@
 import { useState } from "react";
-// import { useLocalStorage } from "src/hooks";
-import {
-  ChatHistoryChunk,
-  ChatHistoryChunkInput,
-} from "src/interfaces/chatHistory";
 import { isEmpty, uuid, wait } from "src/helpers";
 
-const addIdsToChatHistoryChunkTexts = (chunks: ChatHistoryChunkInput[]) =>
+// INTERFACES
+interface ChatHistoryChunkBase {
+  user: "bot" | "human";
+}
+export interface IChatHistoryChunkInput extends ChatHistoryChunkBase {
+  texts: string[];
+}
+export interface IChatHistoryChunk extends ChatHistoryChunkBase {
+  texts: { id: string; value: string }[];
+}
+
+// HELPER
+const addIdsToChatHistoryChunkTexts = (chunks: IChatHistoryChunkInput[]) =>
   chunks.map((chunk) => ({
     ...chunk,
     texts: chunk.texts.map((text) => ({ id: uuid(), value: text })),
   }));
 
-const useChatHistory = (initialValue: Array<ChatHistoryChunkInput>) => {
-  // const [chatHistory, setChatHistory] = useLocalStorage('chatHistory', '');
-  // const [storedValue, setStoredValue] = useState(chatHistory ? JSON.parse(chatHistory) : initialValue);
-  // const [storedValue, setStoredValue] = useLocalStorage('chatHistory', initialValue);
-  const [storedValue, setStoredValue] = useState<Array<ChatHistoryChunk>>(
+// HOOK
+const useChatHistory = (initialValue: Array<IChatHistoryChunkInput>) => {
+  const [storedValue, setStoredValue] = useState<Array<IChatHistoryChunk>>(
     addIdsToChatHistoryChunkTexts(initialValue)
   );
 
-  const setValue = async (chunks: Array<ChatHistoryChunkInput>) => {
+  const setValue = async (chunks: Array<IChatHistoryChunkInput>) => {
     if (isEmpty(chunks)) {
       // reset chat
       setStoredValue(addIdsToChatHistoryChunkTexts(chunks));

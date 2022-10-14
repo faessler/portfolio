@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import { isMobileOrTablet } from "src/helpers";
-import Frame, { FrameType } from "src/components/atoms/Frame/Frame";
+import Frame, { IFrame } from "src/components/atoms/Frame/Frame";
 import HideScrollBar from "src/components/atoms/HideScrollBar/HideScrollBar";
 import styles from "./Gallery.module.scss";
 
 type Props = {
   excludeIndex?: number;
-  frames: Array<FrameType>;
+  frames: Array<IFrame>;
   scrollRef?: React.RefObject<HTMLDivElement>;
   showHandlerFunc: Function;
 };

@@ -1,5 +1,4 @@
-import type { Dispatch, SetStateAction } from "react";
-import { useState } from "react";
+import { useState, Dispatch, SetStateAction } from "react";
 
 const useSessionStorage = <S>(
   key: string,

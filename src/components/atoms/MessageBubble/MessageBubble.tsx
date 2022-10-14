@@ -1,5 +1,5 @@
-import styles from "./MessageBubble.module.scss";
 import { motion } from "framer-motion";
+import styles from "./MessageBubble.module.scss";
 
 type Props = {
   children: React.ReactNode;

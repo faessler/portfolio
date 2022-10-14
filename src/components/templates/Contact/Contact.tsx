@@ -1,20 +1,21 @@
 import ReactMarkdown from "react-markdown";
 import FocusTrap from "focus-trap-react";
-import { ContactType } from "src/api/contactAPI";
-import { ChatHistoryChunk } from "src/interfaces/chatHistory";
-import Header from "src/components/organisms/Header/Header";
-import Gallery from "src/components/molecules/Gallery/Gallery";
+import { IContact } from "src/api/contactAPI";
+import { IChatHistoryChunk } from "src/hooks/useChatHistory";
 import Button from "src/components/atoms/Button/Button";
-import { FrameType } from "src/components/atoms/Frame/Frame";
+import { IFrame } from "src/components/atoms/Frame/Frame";
 import HideScrollBar from "src/components/atoms/HideScrollBar/HideScrollBar";
+import Icon from "src/components/atoms/Icon/Icon";
 import Image from "src/components/atoms/Image/Image";
 import SectionTitle from "src/components/atoms/SectionTitle/SectionTitle";
+import Gallery from "src/components/molecules/Gallery/Gallery";
+import Header from "src/components/organisms/Header/Header";
 import styles from "./Contact.module.scss";
 
 type Props = {
-  chatHistory: Array<ChatHistoryChunk>;
-  contact: ContactType;
-  frames: Array<FrameType>;
+  chatHistory: Array<IChatHistoryChunk>;
+  contact: IContact;
+  frames: Array<IFrame>;
   projectShowHandlerFunc: Function;
   resetChatHistoryFunc: Function;
   toggleContactVisibility: Function;
@@ -30,10 +31,14 @@ const Contact = ({
 }: Props) => (
   <FocusTrap>
     <div className={styles.container}>
-      <Header
-        type="contact"
-        toggleContactVisibility={toggleContactVisibility}
-      />
+      <Header className={styles.header}>
+        <button onClick={() => toggleContactVisibility()}>
+          <Icon name="angleLeft" />
+          <span>Back</span>
+        </button>
+        <h1 id="dialog1Title">Contact Info</h1>
+      </Header>
+
       <HideScrollBar>
         <div className={styles.profilePicture}>
           <Image
@@ -45,7 +50,7 @@ const Contact = ({
 
         <div className={styles.wrapper}>
           <div className={styles.section}>
-            <h3 className={styles.name}>{contact.about?.title}</h3>
+            <h2 className={styles.name}>{contact.about?.title}</h2>
             <div id="dialog1Desc">
               <ReactMarkdown
                 source={contact.about?.text.replace(/\\n/g, "\n") || ""}

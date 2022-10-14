@@ -1,21 +1,22 @@
 import { useEffect, useRef } from "react";
 import FocusTrap from "focus-trap-react";
+import { IProject } from "src/api/projectsAPI";
 import { isMobileOrTablet, getDateTime } from "src/helpers";
-import { ProjectType } from "src/api/projectsAPI";
-import Header from "src/components/organisms/Header/Header";
-import Gallery from "src/components/molecules/Gallery/Gallery";
 import Emoji from "src/components/atoms/Emoji/Emoji";
-import { FrameType } from "src/components/atoms/Frame/Frame";
+import { IFrame } from "src/components/atoms/Frame/Frame";
 import HideScrollBar from "src/components/atoms/HideScrollBar/HideScrollBar";
+import Icon from "src/components/atoms/Icon/Icon";
 import Image from "src/components/atoms/Image/Image";
 import SectionTitle from "src/components/atoms/SectionTitle/SectionTitle";
+import Gallery from "src/components/molecules/Gallery/Gallery";
+import Header from "src/components/organisms/Header/Header";
 import styles from "./Project.module.scss";
 
 type Props = {
   galleryExcludeFrame?: number;
-  galleryFrames: Array<FrameType>;
+  galleryFrames: Array<IFrame>;
   galleryShowHandlerFunc: Function;
-  project: ProjectType;
+  project: IProject;
   projectFocusTrap: boolean;
 };
 
@@ -42,12 +43,15 @@ const Project = ({
 
   const render = () => (
     <div className={styles.container}>
-      <Header
-        type={"project"}
-        galleryShowHandlerFunc={() =>
-          galleryShowHandlerFunc(galleryExcludeFrame, true)
-        }
-      />
+      <Header className={styles.header}>
+        <button
+          onClick={() => galleryShowHandlerFunc(galleryExcludeFrame, true)}
+        >
+          <span>Close</span>
+          <Icon name="close" />
+        </button>
+      </Header>
+
       <main className={styles.main}>
         <HideScrollBar ref={mainScrollRef}>
           <div className={styles.introImage}>

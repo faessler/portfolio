@@ -14,6 +14,27 @@
   }
 }
 
+.header {
+  justify-content: flex-end;
+
+  > button {
+    color: $pink;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    @include hover {
+      color: darken($pink, 10%);
+    }
+    > svg {
+      display: block;
+      width: 0.65em;
+      height: 0.65em;
+      margin: 0.1rem 0 0 0.4rem;
+    }
+  }
+}
+
 .main {
   overflow: hidden;
   height: 100%;
@@ -129,7 +150,7 @@
     padding: 1.5rem;
   }
 
-  > h3 {
+  > h2 {
     margin-bottom: 0.4rem;
   }
 }

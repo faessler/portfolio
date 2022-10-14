@@ -1,14 +1,14 @@
 import styles from "./Frame.module.scss";
 
-export type FrameType = {
+export interface IFrame {
   altText: string;
   image: string;
   index: number;
   subtitle: string;
   title: string;
-};
+}
 type Props = {
-  frame: FrameType;
+  frame: IFrame;
   frameIndex: number;
   showHandlerFunc: Function;
 };

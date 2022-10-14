@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { IAnswer } from "src/api/chatAPI";
 import { isIOS } from "src/helpers";
-import { AnswerType } from "src/api/chatAPI";
 import Icon from "src/components/atoms/Icon/Icon";
 import styles from "./AnswerInput.module.scss";
 
 type Props = {
-  answer: AnswerType;
+  answer: IAnswer;
   answerHandler: Function;
 };
 

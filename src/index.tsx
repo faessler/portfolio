@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "src/components/pages/App/App";
-import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 // import reportWebVitals from "./reportWebVitals";
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import "src/styles/index.scss";
 
 const root = ReactDOM.createRoot(document.getElementById("🌍") as HTMLElement);

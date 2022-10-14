@@ -1,5 +1,4 @@
-import type { ForwardedRef } from "react";
-import { forwardRef } from "react";
+import { forwardRef, ForwardedRef } from "react";
 import { motion } from "framer-motion";
 import styles from "./HideScrollBar.module.scss";
 

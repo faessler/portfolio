@@ -1,17 +1,17 @@
 import { useEffect, useRef } from "react";
-import { ChatHistoryChunk } from "src/interfaces/chatHistory";
-import { AnswerType } from "src/api/chatAPI";
-import { FrameType } from "src/components/atoms/Frame/Frame";
-import Gallery from "src/components/molecules/Gallery/Gallery";
+import { IAnswer } from "src/api/chatAPI";
+import { IChatHistoryChunk } from "src/hooks/useChatHistory";
+import { IFrame } from "src/components/atoms/Frame/Frame";
 import HideScrollBar from "src/components/atoms/HideScrollBar/HideScrollBar";
 import MessageBubble from "src/components/atoms/MessageBubble/MessageBubble";
+import Gallery from "src/components/molecules/Gallery/Gallery";
 import styles from "./Messages.module.scss";
 
 type Props = {
-  answers: Array<AnswerType>;
-  chatHistory: Array<ChatHistoryChunk>;
+  answers: Array<IAnswer>;
+  chatHistory: Array<IChatHistoryChunk>;
   humanName: string;
-  projectFrames: Array<FrameType>;
+  projectFrames: Array<IFrame>;
   projectShowHandlerFunc: Function;
 };
 

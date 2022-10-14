@@ -1,10 +1,10 @@
-import { AnswerType } from "src/api/chatAPI";
+import { IAnswer } from "src/api/chatAPI";
 import AnswerButton from "./AnswerButton/AnswerButton";
 import AnswerInput from "./AnswerInput/AnswerInput";
 import styles from "./Answers.module.scss";
 
 type Props = {
-  answers: Array<AnswerType>;
+  answers: Array<IAnswer>;
   answerHandler: Function;
 };
 

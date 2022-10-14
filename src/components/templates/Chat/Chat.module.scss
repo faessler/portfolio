@@ -3,3 +3,21 @@
   flex-direction: column;
   height: 100%;
 }
+
+.header {
+  > button {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    img {
+      width: 2.8rem;
+      height: 2.8rem;
+      border-radius: 100%;
+    }
+    h1 {
+      margin: 0 0 0 8px;
+      font-size: 1.4rem;
+    }
+  }
+}

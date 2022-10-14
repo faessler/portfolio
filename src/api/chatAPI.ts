@@ -1,23 +1,27 @@
 import { doc, getDoc } from "firebase/firestore/lite";
 import database from "src/api/firestoreAPI";
 
-export type AnswerType = {
+export interface IAnswer {
   target: string;
   text: string;
-};
-export type ChatChunkType = {
-  answers: AnswerType[];
+}
+export interface IChatChunk {
+  answers: IAnswer[];
   texts: string[];
-};
-export type ChatType = {
-  [key: string]: ChatChunkType;
-};
+}
+export interface IChat {
+  [key: string]: IChatChunk;
+}
 
 const chatAPI = async () => {
-  const docRef = doc(database, "Chat", "v1");
+  const docRef = doc(
+    database,
+    "Chat",
+    `${process.env.REACT_APP_GCP_FIRESTORE_CHAT_VERSION}`
+  );
   const docSnap = await getDoc(docRef);
   const chatDocument = docSnap.data();
-  return chatDocument as ChatType;
+  return chatDocument as IChat;
 };
 
 export default chatAPI;

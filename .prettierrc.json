@@ -1,1 +1,9 @@
-{}
+{
+  "importOrder": [
+    "^react(.*)$",
+    "<THIRD_PARTY_MODULES>",
+    "^src/components/(.*)$",
+    "^[./]",
+    "^(.*).scss$"
+  ]
+}

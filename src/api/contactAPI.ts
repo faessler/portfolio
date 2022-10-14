@@ -6,24 +6,24 @@ import {
 } from "firebase/firestore/lite";
 import database from "src/api/firestoreAPI";
 
-type AboutType = {
+type About = {
   text: string;
   title: string;
 };
-type InfoType = {
+type Info = {
   text: string;
   title: string;
 };
-type ResetType = {
+type Reset = {
   deleteHistory: string;
   noHistory: string;
   title: string;
 };
-export type ContactType = {
-  about?: AboutType;
-  info?: InfoType;
-  reset?: ResetType;
-};
+export interface IContact {
+  about?: About;
+  info?: Info;
+  reset?: Reset;
+}
 
 const contactAPI = async () => {
   const q = query(collection(database, "Contact"));
@@ -33,7 +33,7 @@ const contactAPI = async () => {
     const contactDocument = doc.data();
     contactDocuments[doc.id] = contactDocument;
   });
-  return contactDocuments as ContactType;
+  return contactDocuments as IContact;
 };
 
 export default contactAPI;

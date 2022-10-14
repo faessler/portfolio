@@ -1,14 +1,14 @@
 import { useState, useEffect, lazy, Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import chatAPI, { IAnswer, IChat } from "src/api/chatAPI";
+import contactAPI, { IContact } from "src/api/contactAPI";
+import projectsAPI, { IProject } from "src/api/projectsAPI";
+import sendMailAPI from "src/api/sendMailAPI";
 import { isEmpty } from "src/helpers";
 import { useChatHistory, useSessionStorage } from "src/hooks";
-import chatAPI, { ChatType, AnswerType } from "src/api/chatAPI";
-import contactAPI, { ContactType } from "src/api/contactAPI";
-import projectsAPI, { ProjectType } from "src/api/projectsAPI";
-import sendMailAPI from "src/api/sendMailAPI";
+import { IFrame } from "src/components/atoms/Frame/Frame";
 import Chat from "src/components/templates/Chat/Chat";
 import Fallback from "src/components/templates/Fallback/Fallback";
-import { FrameType } from "src/components/atoms/Frame/Frame";
 import styles from "./App.module.scss";
 
 const Contact = lazy(() => import("src/components/templates/Contact/Contact"));
@@ -21,9 +21,9 @@ const App = () => {
   /**
    * CHAT
    */
-  const [chat, setChat] = useSessionStorage<ChatType>("chat", {});
+  const [chat, setChat] = useSessionStorage<IChat>("chat", {});
   const [chatHistory, setChatHistory] = useChatHistory([]);
-  const [answers, setAnswers] = useState<Array<AnswerType>>([]);
+  const [answers, setAnswers] = useState<Array<IAnswer>>([]);
   useEffect(() => {
     if (isEmpty(chat)) {
       chatAPI().then(async (chatDocuments) => {
@@ -46,11 +46,8 @@ const App = () => {
    * PROJECTS
    */
   const [projectFocusTrap, setProjectFocusTrap] = useState(false);
-  const [projects, setProjects] = useSessionStorage<ProjectType[]>(
-    "projects",
-    []
-  );
-  const [projectFrames, setProjectFrames] = useState<FrameType[]>([]);
+  const [projects, setProjects] = useSessionStorage<IProject[]>("projects", []);
+  const [projectFrames, setProjectFrames] = useState<IFrame[]>([]);
   useEffect(() => {
     if (isEmpty(projects)) {
       projectsAPI().then((projectsDocument) => {
@@ -61,12 +58,12 @@ const App = () => {
   }, []);
   useEffect(() => {
     setProjectFrames(
-      projects.map((project: ProjectType) => ({
+      projects.map((project: IProject) => ({
         altText: project.name,
         image: project.previewImage,
         subtitle: project.technology,
         title: project.client,
-      })) as FrameType[]
+      })) as IFrame[]
     );
   }, [projects]);
 
@@ -80,7 +77,7 @@ const App = () => {
   /**
    * CONTACT
    */
-  const [contact, setContact] = useSessionStorage<ContactType>("contact", {});
+  const [contact, setContact] = useSessionStorage<IContact>("contact", {});
   useEffect(() => {
     if (isEmpty(contact)) {
       contactAPI().then((contactDocuments) => {
@@ -108,7 +105,7 @@ const App = () => {
    * ANSWER
    */
   const answerHandler = async (
-    { target, text }: AnswerType,
+    { target, text }: IAnswer,
     inputPurpose?: "[INPUT_NAME]" | "[INPUT_CONTACT]"
   ) => {
     switch (inputPurpose) {
