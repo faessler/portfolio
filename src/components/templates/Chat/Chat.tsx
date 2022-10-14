@@ -1,4 +1,4 @@
-import { ChatHistoryChunkInterface } from "src/interfaces/chatHistory";
+import { ChatHistoryChunk } from "src/interfaces/chatHistory";
 import { isEmpty } from "src/helpers";
 import { AnswerType } from "src/api/chatAPI";
 import Header from "src/components/organisms/Header/Header";
@@ -10,7 +10,7 @@ import styles from "./Chat.module.scss";
 type Props = {
   answers: Array<AnswerType>;
   answerHandler: Function;
-  chatHistory: Array<ChatHistoryChunkInterface>;
+  chatHistory: Array<ChatHistoryChunk>;
   humanName: string;
   projectFrames: Array<FrameType>;
   projectShowHandlerFunc: Function;

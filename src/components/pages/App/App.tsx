@@ -133,7 +133,9 @@ const App = () => {
         { texts: ["[TYPING]"], user: "bot" },
       ]);
 
-      const history = chatHistory.flatMap((chunk) => chunk.texts);
+      const history = chatHistory.flatMap((chunk) =>
+        chunk.texts.map(({ value }) => value)
+      );
       const isSentSuccessfully = await sendMailAPI({
         contact: humanContact || text,
         history,

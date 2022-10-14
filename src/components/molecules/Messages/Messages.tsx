@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { ChatHistoryChunkInterface } from "src/interfaces/chatHistory";
+import { ChatHistoryChunk } from "src/interfaces/chatHistory";
 import { AnswerType } from "src/api/chatAPI";
 import { FrameType } from "src/components/atoms/Frame/Frame";
 import Gallery from "src/components/molecules/Gallery/Gallery";
@@ -9,7 +9,7 @@ import styles from "./Messages.module.scss";
 
 type Props = {
   answers: Array<AnswerType>;
-  chatHistory: Array<ChatHistoryChunkInterface>;
+  chatHistory: Array<ChatHistoryChunk>;
   humanName: string;
   projectFrames: Array<FrameType>;
   projectShowHandlerFunc: Function;
@@ -58,13 +58,13 @@ const Messages = ({
       <HideScrollBar ref={scrollRef}>
         <div className={styles.wrapper}>
           {chatHistory.map((chatHistoryChunk) =>
-            chatHistoryChunk.texts.map((text) => (
+            chatHistoryChunk.texts.map(({ id, value }) => (
               <MessageBubble
-                key={text}
+                key={id}
                 isHuman={chatHistoryChunk.user === "human"}
-                isGallery={text === "[PROJECTS]"}
+                isGallery={value === "[PROJECTS]"}
               >
-                {messageProcessor(text, chatHistoryChunk.user)}
+                {messageProcessor(value, chatHistoryChunk.user)}
               </MessageBubble>
             ))
           )}

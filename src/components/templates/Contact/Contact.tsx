@@ -1,7 +1,7 @@
 import ReactMarkdown from "react-markdown";
 import FocusTrap from "focus-trap-react";
 import { ContactType } from "src/api/contactAPI";
-import { ChatHistoryChunkInterface } from "src/interfaces/chatHistory";
+import { ChatHistoryChunk } from "src/interfaces/chatHistory";
 import Header from "src/components/organisms/Header/Header";
 import Gallery from "src/components/molecules/Gallery/Gallery";
 import Button from "src/components/atoms/Button/Button";
@@ -12,7 +12,7 @@ import SectionTitle from "src/components/atoms/SectionTitle/SectionTitle";
 import styles from "./Contact.module.scss";
 
 type Props = {
-  chatHistory: Array<ChatHistoryChunkInterface>;
+  chatHistory: Array<ChatHistoryChunk>;
   contact: ContactType;
   frames: Array<FrameType>;
   projectShowHandlerFunc: Function;

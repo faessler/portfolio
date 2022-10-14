@@ -1,5 +1,6 @@
 import type { ForwardedRef } from "react";
 import { forwardRef } from "react";
+import { motion } from "framer-motion";
 import styles from "./HideScrollBar.module.scss";
 
 type Props = {
@@ -12,9 +13,9 @@ const HideScrollBar = (
   ref: ForwardedRef<HTMLDivElement>
 ) => (
   <div className={styles[axis]}>
-    <div className={styles.wrapper} ref={ref}>
+    <motion.div className={styles.wrapper} layoutScroll ref={ref}>
       {children}
-    </div>
+    </motion.div>
   </div>
 );
 
